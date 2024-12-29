@@ -11,7 +11,21 @@ Level 1
 
 Code: 
   Write a function called "findClubMembers" that takes in the clubs data as an argument.  Your function should create an object whose keys are the names of people, and whose values are arrays that include the names of the clubs that person is a part of. 
+*/
 
+function findClubMembers(clubsList) {
+  clubsPerMember = clubs.reduce((acc, club) => {
+    club.members.forEach((member) => {
+      acc[member] ||= [];
+      acc[member].push(club.club);
+    });
+    return acc;
+  }, {});
+  return clubsPerMember;
+};
+
+
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -23,7 +37,11 @@ e.g.
       Nathaniel: ['Drama', 'Astronomy'],
       ...etc
     }
+*/ 
 
+console.log(findClubMembers(clubs));
+
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -46,6 +64,6 @@ Annotation:
 
 
 
-// module.exports = {
-//   findClubMembers
-// };
+module.exports = {
+  findClubMembers
+};
