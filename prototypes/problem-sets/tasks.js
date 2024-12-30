@@ -1,3 +1,4 @@
+const { count } = require('console');
 const { tasks } = require('../datasets/tasks');
 
 // To run the code you've written in this file, use node prototypes/problem-sets/tasks.js
@@ -9,14 +10,14 @@ Level 1
 Code: 
   Write a function called "getAverageTime" that determines the average time for all tasks.
 */
-function getAverageTime() {
-  totalTime = tasks.reduce((acc, time) => {
-    acc += time.minutesNeeded;
-    return acc;
-  }, 0);
-  averageTime = totalTime / tasks.length
-  return `The average time for all tasks is ${averageTime} minutes.`
-};
+// function getAverageTime() {
+//   totalTime = tasks.reduce((acc, time) => {
+//     acc += time.minutesNeeded;
+//     return acc;
+//   }, 0);
+//   averageTime = totalTime / tasks.length
+//   return `The average time for all tasks is ${averageTime} minutes.`
+// };
 /*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
@@ -25,7 +26,7 @@ e.g.
     should print -->      
       'The average time for all tasks is 100 minutes.'
 */
-console.log(getAverageTime());
+// console.log(getAverageTime());
 /*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
@@ -85,13 +86,14 @@ Code:
   Write a function called "getStatusTimes" that returns an object with the total minutes for each status.
 */
 function getStatusTimes() {
-  timesPerStatus = {};
-  tasks.forEach((task) => {
-    if (timesPerStatus[task.status]) {
-      timesPerStatus[task.status] += task.minutesNeeded
+  minsPerStatus = tasks.reduce((acc, task) => {
+    if (!acc[task.status]) {
+      acc[task.status] = 0
     };
-});
-  console.log(timesPerStatus)
+    acc[task.status] += task.minutesNeeded;
+    return acc;
+  }, {});
+  return minsPerStatus;
 };
 /*
 Invoke:
@@ -117,7 +119,20 @@ Level 4
 
 Code: 
   Refactor your "getAverageTime" function so that it takes in a status and returns the average time for tasks with that status.
-
+*/
+function getAverageTime(taskStatus) {
+  let count = 0;
+  totalTime = tasks.reduce((acc, task) => {
+    if (task.status === taskStatus) {
+      count++
+      acc += task.minutesNeeded;
+    };
+    return acc;
+  }, 0);
+  averageTime = totalTime / count
+  return `The average time for all tasks is ${averageTime} minutes.`
+};
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -129,7 +144,10 @@ e.g.
   console.log(getAverageTime("inProgress"))
     should print -->      
       'The average time for all inProgress tasks is 90 minutes.'
-
+*/
+console.log(getAverageTime("complete"));
+console.log(getAverageTime("inProgress"));
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -150,8 +168,8 @@ Annotation:
 */
 
 
-// module.exports = {
-//   getAverageTime,
-//   getTasksByPerson,
-//   getStatusTimes
-// };
+module.exports = {
+  getAverageTime,
+  getTasksByPerson,
+  getStatusTimes
+};
