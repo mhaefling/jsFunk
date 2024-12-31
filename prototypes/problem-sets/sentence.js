@@ -4,14 +4,22 @@ var sentence = "Potatoes are so unbelievably delicious!";
 
 console.log('Running sentence.js')
 
-/* Sentence Prompts*/
-
-/*
+/* Sentence Prompts
 Level 1
-
 Code: 
   Write a function called "countLetters" that takes in a letter and counts how many times that letter appears in the sentence. Capitalization should not matter.
-
+*/
+function countLetters(letter) {
+  sentenceArray = sentence.toLowerCase().split('')
+  totalCount = sentenceArray.reduce((acc, eachLetter) => {
+    if (letter.toLowerCase() === eachLetter) {
+      acc++
+    }
+    return acc;
+  }, 0);
+  return totalCount;
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -23,7 +31,12 @@ e.g.
 
   console.log(countLetters('E'))
     // should print ==> 5
+*/
+console.log(countLetters('t'))
+console.log(countLetters('z'))
+console.log(countLetters('E'))
 
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -31,12 +44,25 @@ Annotate:
 
 /*
 Level 2
-
 Code: 
   Write a function called "findLetterCounts" that returns an object which lists all the letters (lowercase) and how many times that letter appears.
    
   Note: Keep the spaces and ! in your object. 
-
+*/
+function findLetterCounts() {
+  lowerCaseSentence = sentence.toLowerCase().split('');
+  sentenceObject = lowerCaseSentence.reduce((acc, eachLetter) => {
+    if (!acc[eachLetter]) {
+      acc[eachLetter] = 0
+    }
+    if (Object.keys(acc).includes(eachLetter)) {
+      acc[eachLetter]++
+    }
+    return acc;
+  }, {});
+  return sentenceObject;
+};
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -62,7 +88,9 @@ e.g.
         c: 1,
         '!': 1
       }
-
+*/
+console.log(findLetterCounts())
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -83,7 +111,7 @@ Annotation:
 */
 
 
-// module.exports = {
-//   countLetters, 
-//   findLetterCounts
-// };
+module.exports = {
+   countLetters, 
+   findLetterCounts
+};

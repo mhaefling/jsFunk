@@ -301,7 +301,7 @@ describe("PROTOTYPES", () => {
   })
 
   describe("Crafting Prompts", () => {
-    it.skip("getSupplyList", () => {
+    it("getSupplyList", () => {
       const crossStitchList = getSupplyList("crossStitching");
       const crochetList = getSupplyList('crocheting');
       const weavingList = getSupplyList('weaving');
@@ -312,7 +312,7 @@ describe("PROTOTYPES", () => {
     });
 
     
-    it.skip("getDetailedList", () => {
+    it("getDetailedList", () => {
       const knitList = getDetailedList("knitting");
       const crochetList = getDetailedList('crocheting');
       const weavingList = getDetailedList('weaving');
@@ -337,13 +337,13 @@ describe("PROTOTYPES", () => {
   })
 
   describe("Plants Prompts", () => {
-    it.skip("findSpringBloomers", () => {
+    it("findSpringBloomers", () => {
       const e = findSpringBloomers();
 
       expect(e).to.equal(8);
     });
 
-    it.skip("findAverageHeight", () => {
+    it("findAverageHeight", () => {
       const meadowsAve = findAverageHeight("meadows");
       const forestsAve = findAverageHeight('forests');
       const grasslandsAve = findAverageHeight('grasslands');
@@ -353,7 +353,7 @@ describe("PROTOTYPES", () => {
       expect(grasslandsAve).to.equal(18);
     })
 
-    it.skip("organizeByHabitat", () => {
+    it("organizeByHabitat", () => {
       const e = organizeByHabitat("meadows");
 
       expect(e).to.deep.equal({
@@ -367,7 +367,7 @@ describe("PROTOTYPES", () => {
   })
 
   describe("Sentence Prompts", () => {
-    it.skip("countLetters", () => {
+    it("countLetters", () => {
       const letterT = countLetters("t");
       const letterZ = countLetters("z");
       const letterE = countLetters("E");
@@ -377,7 +377,7 @@ describe("PROTOTYPES", () => {
       expect(letterE).to.equal(5);
     })
 
-    it.skip("findLetterCounts", () => {
+    it("findLetterCounts", () => {
       const e = findLetterCounts();
 
       expect(e).to.deep.equal({
@@ -404,7 +404,7 @@ describe("PROTOTYPES", () => {
   })
 
   describe("Mod Prompts", () => {
-    it.skip("studentsPerMod", () => {
+    it("studentsPerMod", () => {
       const e = getStats();
 
       expect(e).to.deep.equal([{
@@ -424,18 +424,18 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Board Game Prompts", () => {
-    it.skip("listGames", () => {
+    it("listGames", () => {
       const strategyGames = listGames('strategy');
       const childrensGames = listGames('childrens');
       const partyGames = listGames('party');
-
+    
       expect(strategyGames).to.deep.equal(["Chess", "Catan", "Checkers", "Pandemic", "Battle Ship", "Azul", "Ticket To Ride"]);
       expect(childrensGames).to.deep.equal(["Candy Land", "Connect Four", "Operation", "Trouble"]);
       expect(partyGames).to.deep.equal(["Werewolf", "Cards Against Humanity", "Codenames", "Sushi Go! Party", "Tsuro"]);
     });
 
     
-    it.skip("findHighestRatedGamesByType", () => {
+    it("findHighestRatedGamesByType", () => {
       const highestStrategy = findHighestRatedGamesByType('strategy');
       const highestChildrens = findHighestRatedGamesByType('childrens');
       const highestParty = findHighestRatedGamesByType('party');
@@ -445,7 +445,7 @@ describe("PROTOTYPES", () => {
       expect(highestParty).to.deep.equal({ name: 'Codenames', rating: 7.4, maxPlayers: 8 });
     });
 
-    it.skip("averageScoreByType", () => {
+    it("averageScoreByType", () => {
       const avScoreStrat = averageScoreByType('strategy');
       const avScoreChildren = averageScoreByType('childrens');
       const avScoreParty = averageScoreByType('party');
@@ -455,7 +455,7 @@ describe("PROTOTYPES", () => {
       expect(Math.round(avScoreParty * 100) / 100).to.equal(6.54);
     });
 
-    it.skip("averageScoreByTypeAndPlayers", () => {
+    it("averageScoreByTypeAndPlayers", () => {
       const avScoreStrat = averageScoreByTypeAndPlayers('strategy', 2);
       const avScoreChildren = averageScoreByTypeAndPlayers('childrens', 4);
       const avScoreParty = averageScoreByTypeAndPlayers('party', 8);

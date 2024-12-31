@@ -4,14 +4,17 @@ const { bosses } = require('../datasets/bosses');
 
 console.log('Running bosses.js')
 
-/* Bosses Prompts*/
-
-/*
+/* Bosses Prompts
 Level 1
 
 Code: 
   Write a function called "getBossData" that takes in a boss as an argument and returns a string stating that boss's signature move.
-
+*/
+// function getBossData(bossName) {
+  
+//   console.log(bossObject);
+// };
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -23,7 +26,9 @@ e.g.
   console.log(getBossData("ursula"))
     should print --> 
       "Ursula's signatureMove is tricking fools into signing legal documents without reading them thoroughly."
-
+*/
+// console.log(getBossData("scar"));
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */

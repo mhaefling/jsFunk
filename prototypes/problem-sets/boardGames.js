@@ -4,14 +4,18 @@ const { boardGames } = require('../datasets/boardGames');
 
 console.log('Running boardGames.js')
 
-/* Board Games Prompts*/
-
-/*
+/* Board Games Prompts
 Level 1
-
 Code: 
   Write a function called "listGames" that takes in a type as an argument and returns an array of just the names of the games within a specified type. 
-
+*/
+function listGames(gameType) {
+  let gameNames = boardGames[gameType].map((game) => {
+    return game.name
+  });
+  return gameNames;
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -23,7 +27,10 @@ e.g.
   console.log(listGames("childrens"))
     should print -->      
       ["Candy Land", "Connect Four", "Operation", "Trouble"]
-
+*/
+console.log(listGames("strategy"))
+console.log(listGames("childrens"))
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -31,10 +38,16 @@ Annotate:
 
 /*
 Level 2
-
 Code: 
   Write a function called "findHighestRatedGamesByType" that takes in a type as an argument returns an object which is the highest rated game within the specified type.
-
+*/
+function findHighestRatedGamesByType(gameType) {
+  highestRatedGame = [...boardGames[gameType]].sort((game1, game2) => {
+    return game2.rating - game1.rating
+  });
+return highestRatedGame[0];
+};
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -46,7 +59,10 @@ e.g.
   console.log(findHighestRatedGamesByType("party"))
     should print -->   
     { name: 'Codenames', rating: 7.4, maxPlayers: 8 }
-
+*/
+console.log(findHighestRatedGamesByType("strategy"));
+console.log(findHighestRatedGamesByType("party"));
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -54,10 +70,18 @@ Annotation:
 
 /*
 Level 3
-
 Code: 
   Write a function called "averageScoreByType" that takes in a type as an argument and returns the average score for the specified type.  Do not worry about rounding your result.
-
+*/
+function averageScoreByType(gameType) {
+  totalRating = boardGames[gameType].reduce((acc, game) => {
+    acc += game.rating
+    return acc;
+  }, 0);
+  averageScore = totalRating / boardGames[gameType].length
+  return averageScore
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().  
 e.g.
@@ -69,7 +93,10 @@ e.g.
   console.log(averageScoreByType("childrens"))
     should print -->      
       4.25
-
+*/
+console.log(averageScoreByType("strategy"));
+console.log(averageScoreByType("childrens"));
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -78,10 +105,22 @@ Annotation:
 
 /*
 Level 4
-
 Code: 
   Write a function called "averageScoreByTypeAndPlayers" that takes in 2 arguments - a type and a maximum number of players. The function should return the average score of any games that match the specified type and maximum number of players.  Do not worry about rounding your result.
-
+*/
+function averageScoreByTypeAndPlayers(gameType, maxPlayers) {
+  gameCount = 0
+  totalRating = boardGames[gameType].reduce((acc, game) => {
+    if (game.maxPlayers === maxPlayers) {
+      gameCount++
+      acc += game.rating
+    }
+    return acc;
+  }, 0);
+  averageScore = totalRating / gameCount
+  return averageScore
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().  
 e.g.
@@ -93,7 +132,10 @@ e.g.
   console.log(averageScoreByTypeAndPlayers("childrens", 4))
     should print -->      
       3.8
-
+*/
+console.log(averageScoreByTypeAndPlayers("strategy", 2));
+console.log(averageScoreByTypeAndPlayers("childrens", 4));
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -114,9 +156,9 @@ Annotation:
 
 
 
-// module.exports = {
-//   listGames,
-//   findHighestRatedGamesByType,
-//   averageScoreByType,
-//   averageScoreByTypeAndPlayers
-// };
+module.exports = {
+  listGames,
+  findHighestRatedGamesByType,
+  averageScoreByType,
+  averageScoreByTypeAndPlayers
+};

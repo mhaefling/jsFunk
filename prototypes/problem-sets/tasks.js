@@ -130,7 +130,7 @@ function getAverageTime(taskStatus) {
     return acc;
   }, 0);
   averageTime = totalTime / count
-  return `The average time for all tasks is ${averageTime} minutes.`
+  return `The average time for all ${taskStatus} tasks is ${averageTime} minutes.`
 };
 /*
 Invoke:

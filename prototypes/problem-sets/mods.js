@@ -4,14 +4,21 @@ const { mods } = require('../datasets/mods');
 
 console.log('Running mods.js')
 
-/* Mods Prompts*/
-
-/*
+/* Mods Prompts
 Level 1
-
 Code: 
   Write a function called "getStats" that returns an array of objects where the keys are mod (the number of the module) and studentsPerInstructor (how many students per instructor there are for that mod) 
-
+*/
+function getStats() {
+  modBreakdown = []
+  mods.forEach((mod) => {
+    console.log(mod)
+    modNumber = mod.mod
+    modBreakdown.push({ mod: modNumber, studentsPerInstructor: `${mod.students}` / `${mod.instructors}` })
+  });
+  return modBreakdown;
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -23,7 +30,9 @@ e.g.
         { mod: 3, studentsPerInstructor: 10 },
         { mod: 4, studentsPerInstructor: 8 }
       ]
-
+*/
+console.log(getStats())
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -46,6 +55,6 @@ Annotation:
 
 
 
-// module.exports = {
-//   getStats
-// };
+module.exports = {
+  getStats
+};

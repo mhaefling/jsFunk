@@ -61,12 +61,12 @@ If you'd like to keep track of your progress, feel free to use the checklist bel
 - [x] puppers
 - [x] club
 - [x] student
-- [ ] task
-- [ ] crafting
-- [ ] plants
-- [ ] sentence
-- [ ] mods
-- [ ] boardGames
+- [x] task
+- [x] crafting
+- [x] plants
+- [x] sentence
+- [x] mods
+- [x] boardGames
 - [ ] bosses
 - [ ] cakes
 - [ ] classrooms

@@ -1,24 +1,32 @@
+const { count } = require('console');
 const { coloradoPlants } = require('../datasets/plants');
 
 // To run the code you've written in this file, use node prototypes/problem-sets/plants.js
 
 console.log('Running plants.js')
 
-/* Plants Prompts*/
-
-/*
+/* Plants Prompts
 Level 1
-
 Code: 
   Write a function called "findSpringBloomers" that finds how many plants have a blooming season any time in the spring.
-
+*/
+function findSpringBloomers() {
+  total = 0
+  coloradoPlants.forEach((plant) => {
+    if (plant.bloomingSeason.includes('Spring'))
+      total++
+  });
+  return total
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
   console.log(findSpringBloomers())
     should print --> 8     
-
-
+*/
+console.log(findSpringBloomers());
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -26,16 +34,26 @@ Annotate:
 
 /*
 Level 2
-
 Code: 
   Write a function called "findAverageHeight" that returns the average height of all the plants.
-
+*/
+// function findAverageHeight() {
+//  totalPlantHeight = coloradoPlants.reduce((acc, plant) => {
+//    acc += plant.height
+//    return acc;
+//  }, 0);
+//  averageHeight = totalPlantHeight / coloradoPlants.length
+//  return averageHeight
+// };
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
   console.log(findAverageHeight())
     should print -->  59.2
-
+*/
+// console.log(findAverageHeight());
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -43,10 +61,22 @@ Annotation:
 
 /*
 Level 3
-
 Code: 
   Refactor your "findAverageHeight" function so that it takes in a habitat and returns the average height of the plants with that habitat. Don't worry about rounding the decimals.
-
+*/
+function findAverageHeight(habitat) {
+  plantCount = 0
+  totalPlantHeight = coloradoPlants.reduce((acc, plant) => {
+    if (plant.habitat.includes(habitat)) {
+      plantCount++
+      acc += plant.height
+    }
+    return acc;
+  }, 0);
+  averageHeight = totalPlantHeight / plantCount
+  return averageHeight
+};
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -56,7 +86,10 @@ e.g.
 e.g.
   console.log(findAverageHeight("forests"))
     should print -->  117.33
-
+*/
+console.log(findAverageHeight("meadows"));
+console.log(findAverageHeight("forests"));
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -64,10 +97,22 @@ Annotation:
 
 /*
 Level 4
-
 Code: 
   Write a function called "organizeByHabitat" that returns an object the plants organized by habitat.
-
+*/
+function organizeByHabitat() {
+  plantsByHabitat = coloradoPlants.reduce((acc, plant) => {
+    if (!acc[plant.habitat]) {
+      acc[plant.habitat] = []
+    }
+    if (acc[plant.habitat]) {
+       acc[plant.habitat].push(plant.name)
+    }
+    return acc;
+  }, {});
+  return plantsByHabitat;
+};
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -80,7 +125,9 @@ e.g.
       mountains: [ 'Rocky Mountain Bristlecone Pine', 'Scarlet Gilia' ],
       grasslands: [ 'Indian Paintbrush' ]
     }
-
+*/
+console.log(organizeByHabitat())
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -102,8 +149,7 @@ Annotation:
 
 
 
-// module.exports = {
-//   findSpringBloomers,
-//   findAverageHeight,
-//   organizeByHabitat
-// };
+module.exports = {
+  findSpringBloomers,
+  findAverageHeight,   organizeByHabitat
+};

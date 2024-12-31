@@ -4,14 +4,18 @@ const { craftSupplies } = require('../datasets/crafting');
 
 console.log('Running crafting.js')
 
-/* Crafting Prompts*/
-
-/*
+/* Crafting Prompts
 Level 1
-
 Code: 
   Write a function called "getSupplyList" that takes in a craft as an argument and returns a list of supplies needed.
-
+*/
+function getSupplyList(craftName) {
+  suppliesByCraft = craftSupplies[craftName].map((craft) => {
+    return craft.name;
+  });
+  return suppliesByCraft;
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -23,7 +27,10 @@ e.g.
   console.log(getSupplyList("crocheting"))
     should print -->      
       ['hook', 'yarn', 'scissors']
-
+*/
+console.log(getSupplyList("crossStitching"));
+console.log(getSupplyList("crocheting"));
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -31,10 +38,20 @@ Annotate:
 
 /*
 Level 2
-
 Code: 
   Write a function called "getDetailedList" that takes in a craft as an argument and returns a more detailed list of the supplies needed.
-
+*/
+function getDetailedList(craftName) {
+  detailedSuppliesByCraft = craftSupplies[craftName].map((craft) => {
+    if (craft.amountNeeded > 1) {
+      return `I need ${craft.amountNeeded} ${craft.name}s.`
+    } else {
+      return `I need ${craft.amountNeeded} ${craft.name}.`
+    }
+  });
+  return detailedSuppliesByCraft;
+};
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -51,7 +68,9 @@ e.g.
   console.log(getDetailedList("crocheting"))
     should print -->      
       [ 'I need 1 hook.', 'I need 3 yarns.', 'I need 1 scissor.' ]
-
+*/
+console.log(getDetailedList("weaving"));
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -59,7 +78,6 @@ Annotation:
 
 /*
 Level 3
-
 Test:
   * Uncomment the module.exports below.
   * Unskip the crafting prompts tests in your prototype-test.js file.
@@ -73,7 +91,7 @@ Annotation:
 
 
 
-// module.exports = {
-//   getSupplyList,
-//   getDetailedList
-// };
+module.exports = {
+  getSupplyList,
+  getDetailedList
+};
