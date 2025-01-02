@@ -67,12 +67,12 @@ If you'd like to keep track of your progress, feel free to use the checklist bel
 - [x] sentence
 - [x] mods
 - [x] boardGames
-- [ ] bosses
-- [ ] cakes
-- [ ] classrooms
-- [ ] books
-- [ ] weather
-- [ ] nationalParks
+- [x] bosses
+- [x] cakes
+- [x] classrooms
+- [x] books
+- [x] weather
+- [x] nationalParks
 - [ ] breweries
 
 ### Double/Triple Data Sets

@@ -4,14 +4,23 @@ const { classrooms } = require('../datasets/classrooms');
 
 console.log('Running classrooms.js')
 
-/* Classrooms Prompts*/
-
-/*
+/* Classrooms Prompts
 Level 1
-
 Code: 
   Write a function called "getClassrooms" that returns an array of just the front-end classrooms.
 
+function getClassrooms() {
+  frontendClassRooms = classrooms.reduce((acc, classroom) => {
+    if (classroom.program === 'FE') {
+      acc.push(classroom)
+    }
+    return acc;
+  }, []);
+  return frontendClassRooms;
+}
+*/
+
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -23,7 +32,9 @@ e.g.
         { roomLetter: 'E', program: 'FE', capacity: 22 },
         { roomLetter: 'G', program: 'FE', capacity: 29 }
       ]
-
+*/
+// console.log(getClassrooms());
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -31,10 +42,22 @@ Annotate:
 
 /*
 Level 2
-
 Code: 
   Write a function called "getCapacities" that returns an object where the keys are 'feCapacity' and 'beCapacity', and the values are the total capacity for all classrooms in each program.
-
+*/
+function getCapacities() {
+  totalFeCapacity = 0;
+  totalBeCapacity = 0;
+  classrooms.forEach((classroom) => {
+    if (classroom.program === "FE") {
+      totalFeCapacity += classroom.capacity
+    } else {
+      totalBeCapacity += classroom.capacity
+    }
+  });
+  return { feCapacity: totalFeCapacity, beCapacity: totalBeCapacity }
+};
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -44,7 +67,9 @@ e.g.
         feCapacity: 110,
         beCapacity: 96
       }
-
+*/
+console.log(getCapacities());
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -52,10 +77,17 @@ Annotation:
 
 /*
 Level 3
-
 Code: 
   Write a function called "sortByCapacity" that returns an array of classrooms sorted by their capacity (least capacity to greatest)
 
+function sortByCapacity() {
+  classroomsByCapacity = classrooms.toSorted((a, b) => {
+    return a.capacity - b.capacity
+  });
+  return classroomsByCapacity
+};
+*/
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -81,7 +113,9 @@ e.g.
         },
         ...etc
       ]
-
+*/
+// console.log(sortByCapacity())
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -90,10 +124,19 @@ Annotation:
   
 /*
 Level 4
-
 Code: 
   Refactor your "getClassrooms" function from Level 1 so that it takes in an argument of either 'FE' or 'BE' and returns an array of just those classrooms.
-
+*/
+function getClassrooms(programType) {
+  requestedClassrooms = classrooms.reduce((acc, classroom) => {
+    if (classroom.program === programType) {
+      acc.push(classroom)
+    }
+    return acc;
+  }, []);
+  return requestedClassrooms;
+}
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -114,7 +157,10 @@ e.g.
         { roomLetter: 'F', program: 'BE', capacity: 19 },
         { roomLetter: 'H', program: 'BE', capacity: 18 }
       ]
-
+*/
+console.log(getClassrooms("FE"));
+console.log(getClassrooms("BE"));
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -122,10 +168,16 @@ Annotate:
 
 /*
 Level 5
-
 Code: 
   Refactor your "sortByCapacity" function from Level 3 so that it takes in the array to be sorted as an argument. It should still return an array of the classrooms sorted by their capacity (least capacity to greatest)
-
+*/
+function sortByCapacity(classroomData) {
+  classroomsByCapacity = classroomData.toSorted((a, b) => {
+    return a.capacity - b.capacity
+  });
+  return classroomsByCapacity
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -151,17 +203,23 @@ e.g.
         },
         ...etc
       ]
-
+*/
+console.log(sortByCapacity(classrooms))
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
 /*
 Level 6
-
 Code: 
   Write a function called "filterAndSortClassrooms".  This function should take in an argument of "FE" or "BE".  The function should return an array of only BE or FE classrooms, sorted by capacity (least to greatest).
-
+*/
+function filterAndSortClassrooms(classroomProgram) {
+  classroomsToSort = getClassrooms(classroomProgram);
+  return sortByCapacity(classroomsToSort)
+}
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -195,7 +253,10 @@ e.g.
         },
         ...etc
       ]
-
+*/
+console.log(filterAndSortClassrooms("BE"));
+console.log(filterAndSortClassrooms("FE"));
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -270,9 +331,9 @@ Annotation:
 
 
 
-// module.exports = {
-//   getClassrooms,
-//   getCapacities,
-//   sortByCapacity,
-//   filterAndSortClassrooms
-// };
+module.exports = {
+  getClassrooms,
+  getCapacities,
+  sortByCapacity,
+  filterAndSortClassrooms
+};

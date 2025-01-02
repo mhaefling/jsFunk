@@ -8,16 +8,25 @@ console.log('Running breweries.js')
 
 /*
 Level 1
-
 Code: 
   Write a function called "getBeerCount" that returns the total beer count of all beers for every brewery combined.
-
+*/
+function getBeerCount() {
+  totalBeers = 0
+  breweries.forEach((brewery) => {
+    totalBeers += brewery.beers.length
+  });
+  return totalBeers;
+}
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
   console.log(getBeerCount())
     should print --> 40
-
+*/
+// console.log(getBeerCount())
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -25,10 +34,18 @@ Annotate:
 
 /*
 Level 2
-
 Code: 
   Write a function called "getBreweryBeerCount" that returns an array of objects where each object has the name of a brewery and the count of how many beers that brewery has.
-
+*/
+function getBreweryBeerCount() {
+  beerCountByBrewery = breweries.reduce((acc, brewery) => {
+    breweryObject = { name: brewery.name, beerCount: brewery.beers.length }
+    acc.push(breweryObject)
+    return acc;
+  }, []);
+  return beerCountByBrewery;
+};
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -39,7 +56,9 @@ e.g.
         { name: 'Ratio Beerworks', beerCount: 5},
         ...etc.
       ]
-
+*/
+// console.log(getBreweryBeerCount())
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -47,10 +66,18 @@ Annotation:
 
 /*
 Level 3
-
 Code: 
   Write a function called "getSingleBreweryBeerCount" that takes in a brewery name as an argument and returns the number of beers that specified brewery has.
-
+*/
+function getSingleBreweryBeerCount(breweryName) {
+  beerCount = 0
+  breweries.forEach((brewery) => {
+    if (brewery.name === breweryName)
+      beerCount = brewery.beers.length;
+  });
+  return beerCount;
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -60,7 +87,10 @@ e.g.
 e.g.
   console.log(getSingleBreweryBeerCount("Platt Park Brewing Co."))
     should print -->  7
-
+*/
+// console.log(getSingleBreweryBeerCount('Ratio Beerworks'))
+// console.log(getSingleBreweryBeerCount("Platt Park Brewing Co."))
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -69,10 +99,22 @@ Annotation:
   
 /*
 Level 4
-
 Code: 
   Write a function called "findHighestAbvBeer" that takes in a brewery name and returns the beer which has the highest ABV of all beers at that brewery.
-
+*/
+function findHighestAbvBeer(breweryName) {
+  let highestAbv
+  breweries.forEach((brewery) => {
+    if (brewery.name === breweryName) {
+      highestAbv = brewery.beers.sort((a, b) => {
+        return b.abv - a.abv
+      });
+    };
+    return highestAbv;
+  });
+  return highestAbv[0]
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -84,23 +126,38 @@ e.g.
   console.log(findHighestAbvBeer("Little Machine Brew"))
     should print --> 
       { name: 'B.B. Rodriguez', type: 'Coffee Double Brown', abv: 8, ibu: 30, }
-
+*/
+// console.log(findHighestAbvBeer("Ratio Beerworks"));
+// console.log(findHighestAbvBeer("Little Machine Brew"));
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
 /*
 Level 5
-
 Code: 
   Write a function called "findHighestAbvAll" returns the beer which has the highest ABV across all breweries.
-
+*/
+function findHighestAbvAll() {
+  highestAbvByBrewery = []
+  breweries.forEach((brewery) => {
+    highestAbvByBrewery.push(findHighestAbvBeer(brewery.name))
+  });
+  highestAbvByBrewery.sort((a, b) => {
+    return b.abv - a.abv
+  });
+  return highestAbvByBrewery[0]
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
   console.log(findHighestAbvAll())
       { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
-
+*/
+console.log(findHighestAbvAll())
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -123,10 +180,10 @@ Annotation:
 
 
 
-// module.exports = {
-//   getBeerCount,
-//   getBreweryBeerCount,
-//   getSingleBreweryBeerCount,
-//   findHighestAbvBeer,
-//   findHighestAbvAll
-// };
+module.exports = {
+  getBeerCount,
+  getBreweryBeerCount,
+  getSingleBreweryBeerCount,
+  findHighestAbvBeer,
+  findHighestAbvAll
+};

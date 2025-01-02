@@ -467,7 +467,7 @@ describe("PROTOTYPES", () => {
   })
 
   describe("Bosses Prompts", () => {
-    it.skip("getBossData", () => {
+    it("getBossData", () => {
       const scarNemesis = getBossData('scar', 'archnemesis');
       const jafarMove = getBossData('jafar', 'signatureMove');
       const ursulaGoal = getBossData('ursula', 'goal');
@@ -478,7 +478,7 @@ describe("PROTOTYPES", () => {
     });
 
     
-    it.skip("getLoyalty", () => {
+    it("getLoyalty", () => {
       const scarLoyalty = getLoyalty('scar');
       const ursulaLoyalty = getLoyalty('ursula');
       const jafarLoyalty = getLoyalty('jafar');
@@ -490,7 +490,7 @@ describe("PROTOTYPES", () => {
   })
 
   describe("Cake Prompts", () => {
-    it.skip("stockPerCake", () => {
+    it("stockPerCake", () => {
       const e = getStockCounts();
 
       expect(e).to.deep.equal([{
@@ -514,7 +514,7 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("onlyInStock", () => {
+    it("onlyInStock", () => {
       const e = getInStock();
 
       expect(e).to.deep.equal([{
@@ -544,19 +544,19 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("totalInventory", () => {
+    it("totalInventory", () => {
       const e = doInventory();
 
       expect(e).to.deep.equal(59)
     });
 
-    it.skip("allToppings", () => {
+    it("allToppings", () => {
       const e = getToppings();
 
       expect(e).to.deep.equal(["dutch process cocoa", "toasted sugar", "smoked sea salt", "berries", "edible flowers", "mint", "cranberry", "crystallized ginger"])
     });
 
-    it.skip("groceryList", () => {
+    it("groceryList", () => {
       const e = makeGroceryList();
 
       expect(e).to.deep.equal({
@@ -573,7 +573,7 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Class Prompts", () => {
-    it.skip("getClassrooms", () => {
+    it("getClassrooms", () => {
       const e = getClassrooms("FE");
 
       expect(e).to.deep.equal([{
@@ -595,7 +595,7 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("totalCapacities", () => {
+    it("totalCapacities", () => {
       const e = getCapacities();
 
       expect(e).to.deep.equal({
@@ -604,7 +604,7 @@ describe("PROTOTYPES", () => {
       })
     });
 
-    it.skip("sortByCapacity", () => {
+    it("sortByCapacity", () => {
       const e = sortByCapacity(classrooms);
 
       expect(e).to.deep.equal([{
@@ -642,7 +642,7 @@ describe("PROTOTYPES", () => {
       }])
     })
 
-    it.skip("filter and sort BE", () => {
+    it("filter and sort BE", () => {
       const e = filterAndSortClassrooms("BE");
 
       expect(e).to.deep.equal([{
@@ -664,7 +664,7 @@ describe("PROTOTYPES", () => {
       }])
     })
 
-    it.skip("filter and sort FE", () => {
+    it("filter and sort FE", () => {
       const e = filterAndSortClassrooms("FE");
 
       expect(e).to.deep.equal([{
@@ -688,7 +688,7 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Book prompts", () => {
-    it.skip("removeViolence", () => {
+    it("removeViolence", () => {
       const e = removeViolence(books);
 
       expect(e).to.deep.equal(['1984',
@@ -707,7 +707,7 @@ describe("PROTOTYPES", () => {
         'Treasure Island'])
     });
 
-    it.skip("getNewBooks", () => {
+    it("getNewBooks", () => {
       const e = getNewBooks(books);
 
       expect(e).to.deep.equal([{
@@ -719,7 +719,7 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("getByGenre", () => {
+    it("getByGenre", () => {
       const e = getByGenre(books, "Fiction", 1954);
 
       expect(e).to.deep.equal([ 'Life of Pi', 'The Bell Jar' ])
@@ -736,20 +736,20 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Weather prompts", () => {
-    it.skip("getAverageTemps", () => {
+    it("getAverageTemps", () => {
       const e = getAverageTemps();
 
       expect(e).to.deep.equal([
         40, 40, 44.5, 43.5, 57, 35, 65.5, 62, 14, 46.5
       ])
     }),
-      it.skip("findSunnySpots", () => {
+      it("findSunnySpots", () => {
         const e = findSunnySpots();
 
         expect(e).to.deep.equal(['Atlanta, Georgia is sunny.', 'New Orleans, Louisiana is sunny.', 'Raleigh, North Carolina is mostly sunny.']
         )
       }),
-      it.skip("findHighestHumidity", () => {
+      it("findHighestHumidity", () => {
         const e = findHighestHumidity();
 
         expect(e).to.deep.equal({
@@ -759,7 +759,7 @@ describe("PROTOTYPES", () => {
           temperature: { high: 49, low: 38 }
         })
       }),
-      it.skip("findByType sunny", () => {
+      it("findByType sunny", () => {
         const e = findByType(weather, "sunny");
 
         expect(e).to.deep.equal([ 
@@ -769,31 +769,31 @@ describe("PROTOTYPES", () => {
         ]
         )
       }),
-      it.skip("findByType cloudy", () => {
+      it("findByType cloudy", () => {
         const e = findByType(weather, "cloudy");
 
         expect(e).to.deep.equal([
-          'New York, New York is cloudy',
-          'Portland, Oregon is cloudy',
-          'Boston, Massachusetts is cloudy',
-          'Miami, Florida is partly cloudy',
-          'Phoenix, Arizona is cloudy',
-          'Anchorage, Alaska is cloudy'
+          'New York, New York is cloudy.',
+          'Portland, Oregon is cloudy.',
+          'Boston, Massachusetts is cloudy.',
+          'Miami, Florida is partly cloudy.',
+          'Phoenix, Arizona is cloudy.',
+          'Anchorage, Alaska is cloudy.'
         ]
         )
       }),
-      it.skip("getAverageTempByType sunny high", () => {
+      it("getAverageTempByType sunny high", () => {
         const e = getAverageTempByType("sunny", "high");
 
         expect(e).to.deep.equal("The average high for sunny locations is 58 degrees.")
       }),
-      it.skip("getAverageTempByType sunny low", () => {
+      it("getAverageTempByType sunny low", () => {
         const e = getAverageTempByType("sunny", "low");
         console.log('e', e)
 
         expect(e).to.deep.equal("The average low for sunny locations is 43.5 degrees.")
       }),
-      it.skip("getAverageTempByType cloudy low", () => {
+      it("getAverageTempByType cloudy low", () => {
         const e = getAverageTempByType("cloudy", "low");
 
         expect(e).to.deep.equal("The average low for cloudy locations is 33.4 degrees.")
@@ -801,7 +801,7 @@ describe("PROTOTYPES", () => {
   });
 
   describe("National Park Prompts", () => {
-    it.skip("getParkVisitList", () => {
+    it("getParkVisitList", () => {
       const e = getParkVisitList();
 
       expect(e).to.deep.equal({
@@ -809,7 +809,7 @@ describe("PROTOTYPES", () => {
         parksVisited: ['Rocky Mountain', 'Acadia', 'Zion']
       })
     }),
-      it.skip("getParkActivities", () => {
+      it("getParkActivities", () => {
         const e = getParkActivities();
 
         expect(e).to.deep.equal(
@@ -827,7 +827,7 @@ describe("PROTOTYPES", () => {
             'rock climbing'
           ])
       }),
-      it.skip("getParkInEachState", () => {
+      it("getParkInEachState", () => {
         const e = getParkInEachState();
 
         expect(e).to.deep.equal(
@@ -843,13 +843,13 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Brewery Prompts", () => {
-    it.skip("getBeerCount", () => {
+    it("getBeerCount", () => {
       const e = getBeerCount();
 
       expect(e).to.deep.equal(40)
     });
 
-    it.skip("getBreweryBeerCount", () => {
+    it("getBreweryBeerCount", () => {
       const e = getBreweryBeerCount();
 
       expect(e).to.deep.equal([{
@@ -870,7 +870,7 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("getSingleBreweryBeerCount", () => {
+    it("getSingleBreweryBeerCount", () => {
       const ratioCount = getSingleBreweryBeerCount('Ratio Beerworks');
       const plattCount = getSingleBreweryBeerCount('Platt Park Brewing Co.');
 
@@ -878,7 +878,7 @@ describe("PROTOTYPES", () => {
       expect(plattCount).to.equal(7);
     });
 
-    it.skip("findHighestAbvBeer", () => {
+    it("findHighestAbvBeer", () => {
       const e = findHighestAbvBeer("Ratio Beerworks");
 
       expect(e).to.deep.equal({ name: 'Hold Steady', type: 'Chocolate Rye Scotch Ale', abv: 7.5, ibu: 27, })
@@ -889,7 +889,7 @@ describe("PROTOTYPES", () => {
     })
 
 
-    it.skip("findHighestAbvAll", () => {
+    it("findHighestAbvAll", () => {
       const e = findHighestAbvAll();
 
       expect(e).to.deep.equal({

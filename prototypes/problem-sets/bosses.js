@@ -11,14 +11,13 @@ Code:
   Write a function called "getBossData" that takes in a boss as an argument and returns a string stating that boss's signature move.
 */
 // function getBossData(bossName) {
-  
-//   console.log(bossObject);
+//  return `${bosses[bossName].name}'s signatureMove is ${bosses[bossName].signatureMove}.`;
 // };
 /*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
-  console.log(getBossData("scar"))
+  // console.log(getBossData("scar"))
     should print --> 
       "Scar's signatureMove is fratricide."
 
@@ -28,6 +27,7 @@ e.g.
       "Ursula's signatureMove is tricking fools into signing legal documents without reading them thoroughly."
 */
 // console.log(getBossData("scar"));
+// console.log(getBossData("ursula"));
 /*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
@@ -36,10 +36,13 @@ Annotate:
 
 /*
 Level 2
-
 Code: 
   Refactor your "getBossData" function so that it takes in 2 arguments - a boss and a specific datapoint.  The function should now return a string stating information about the specified boss based on the specified datapoint. 
-
+*/
+function getBossData(bossName, dataPoint) {
+  return `${bosses[bossName].name}'s ${dataPoint} is ${bosses[bossName][dataPoint]}.`;
+};
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -56,7 +59,11 @@ e.g.
   console.log(getBossData("ursula", "goal"))
     should print --> 
       "Ursula's goal is to rule the seas."
-
+*/
+console.log(getBossData("scar", "archnemesis"));
+console.log(getBossData("jafar", "signatureMove"));
+console.log(getBossData("ursula", "goal"));
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -64,10 +71,18 @@ Annotation:
 
 /*
 Level 3
-
 Code: 
   Write a function called "getLoyalty" that returns average loyalty of a given boss's sidekicks.  Don't worry about rounding the decimals.
-
+*/
+function getLoyalty(bossName) {
+  sideKicksTotalLoyalty = bosses[bossName].sidekicks.reduce((acc, sideKick) => {
+    acc += sideKick.loyaltyToBoss;
+    return acc;
+  }, 0);
+  averageLoyalty = sideKicksTotalLoyalty / bosses[bossName].sidekicks.length
+  return averageLoyalty;
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -76,7 +91,10 @@ e.g.
 e.g.
   console.log(getLoyalty("ursula"))
     should print -->  9.5  
-
+*/
+console.log(getLoyalty("scar"));
+console.log(getLoyalty("ursula"));
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -98,10 +116,10 @@ Annotation:
 
 
 
-// module.exports = {
-//   getBossData,
-//   getLoyalty
-// };
+module.exports = {
+  getBossData,
+  getLoyalty
+};
 
 
 

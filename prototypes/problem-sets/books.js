@@ -4,14 +4,21 @@ const { books } = require('../datasets/books');
 
 console.log('Running books.js')
 
-/* Books Prompts*/
-
-/*
+/* Books Prompts
 Level 1
-
 Code: 
   Write a function called "removeViolence" that takes in the books data as an argument and returns an array of all book titles that are not horror or true crime.
-
+*/
+function removeViolence(bookData) {
+  filteredBooks = [];
+  books.forEach((book) => {
+    if (!book.genre.includes('Horror') && !book.genre.includes('True Crime')) {
+      filteredBooks.push(book.title)
+    }
+  });
+  return filteredBooks
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -20,7 +27,9 @@ e.g.
      [
         '1984', 'The Great Gatsby', 'Lord of the Flies', 'Harry Potter and the Sorcerer\'s Stone', 'The Hitchhiker\'s Guide to the Galaxy', 'Flowers for Algernon', 'Slaughterhouse-Five', 'The Handmaid\'s Tale', 'The Metamorphosis', 'Brave New World', 'Life of Pi', 'The Curious Incident of the Dog in the Night - Time', 'The Bell Jar', 'Catch-22', 'Treasure Island'
       ]
-
+*/
+console.log(removeViolence(books));
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -29,10 +38,20 @@ Annotate:
 
 /*
 Level 2
-
 Code: 
   Write a function called "getByGenre" that takes 2 arguments: the books data, and a specified genre.  The function should return an array of objects containing all books of that genre.
 
+function getByGenre(bookData, bookGenre) {
+  booksByGenre = bookData.reduce((acc, book) => {
+    if (book.genre === bookGenre) {
+      acc.push(book)
+    }
+    return acc;
+  }, []);
+  return booksByGenre;
+};
+*/
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -72,6 +91,10 @@ e.g.
       }
     ]
 
+console.log(getByGenre(books, "Fiction"));
+console.log(getByGenre(books, "Satire"));
+*/
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -81,10 +104,20 @@ Annotation:
 
 /*
 Level 3
-
 Code: 
   Modify your "getByGenre" function so that it doesn't return the entire book object, only the title.
 
+function getByGenre(bookData, bookGenre) {
+  booksByGenre = bookData.reduce((acc, book) => {
+    if (book.genre === bookGenre) {
+      acc.push(book.title)
+    }
+    return acc;
+  }, []);
+  return booksByGenre;
+};
+*/
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -103,6 +136,10 @@ e.g.
     should print -->   
     ['Catch-22']
 
+console.log(getByGenre(books, "Fiction"));
+console.log(getByGenre(books, "Satire"));
+*/
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible.  
 */
@@ -111,10 +148,19 @@ Annotation:
 
 /*
 Level 4
-
 Code: 
   Modify your "getByGenre" function so that it takes in a third argument of a year and only returns the book titles for books published after that year.
-
+*/
+function getByGenre(bookData, bookGenre, bookYear) {
+  booksByGenre = bookData.reduce((acc, book) => {
+    if (book.genre === bookGenre && book.published > bookYear) {
+      acc.push(book.title)
+    }
+    return acc;
+  }, []);
+  return booksByGenre;
+};
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -131,7 +177,10 @@ e.g.
       'Slaughterhouse-Five',
       "The Handmaid's Tale"
     ]
-    
+*/
+console.log(getByGenre(books, "Fiction", 1954));
+console.log(getByGenre(books, "Science Fiction", 1950));
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible.  
 */
@@ -140,10 +189,18 @@ Annotation:
 
 /*
 Level 5
-
 Code: 
   Write a function called "getNewBooks" that returns an array of objects containing all books that were published in the 90's and 00's. Each object should have only a title property and a year property.
-
+*/
+function getNewBooks() {
+  newBooks = [] 
+  books.forEach((book) => {
+    if (book.published >= 1990 || book.published >= 2000)
+      newBooks.push({ title: book.title, year: book.published})
+  });
+  return newBooks;
+};
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -154,7 +211,9 @@ e.g.
       { title: 'Life of Pi', year: 2001 },
       { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }
     ]
-
+*/
+console.log(getNewBooks());
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible.  
 */
@@ -177,8 +236,8 @@ Annotation:
 
 
 
-// module.exports = {
-//   removeViolence,
-//   getByGenre,
-//   getNewBooks,
-// };
+module.exports = {
+  removeViolence,
+  getByGenre,
+  getNewBooks,
+};

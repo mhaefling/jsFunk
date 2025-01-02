@@ -4,14 +4,24 @@ const { nationalParks } = require('../datasets/nationalParks');
 
 console.log('Running nationalParks.js')
 
-/* National Parks Prompts*/
-
-/*
+/* National Parks Prompts
 Level 1
-
 Code: 
   Write a function called "getParkVisitList" that returns an object containing the names of which parks I need to visit and the ones I have already visited.
-
+*/
+function getParkVisitList() {
+  visitedParks = [];
+  unvisitedParks = [];
+  nationalParks.forEach((park) => {
+    if (park.visited === true) {
+      visitedParks.push(park.name);
+    } else {
+      unvisitedParks.push(park.name);
+    };
+  });
+  return { parksToVisit: unvisitedParks, parksVisited: visitedParks }
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -21,7 +31,9 @@ e.g.
       parksToVisit: ["Yellowstone", "Glacier", "Everglades"],
       parksVisited: ["Rocky Mountain", "Acadia", "Zion"]
     }
-
+*/
+console.log(getParkVisitList())
+/*
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -29,10 +41,19 @@ Annotate:
 
 /*
 Level 2
-
 Code: 
   Write a function called "getParkInEachState" that returns an array of objects where the key is the state and the value is its National Park.
-
+*/
+function getParkInEachState() {
+  parksPerState = nationalParks.reduce((acc, park) => {
+    stateObject = {};
+    stateObject[park.location] = park.name
+    acc.push(stateObject)
+    return acc;
+  }, []);
+  return parksPerState;
+};
+/*
 Invoke:
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -46,7 +67,9 @@ e.g.
       { Utah: 'Zion' },
       { Florida: 'Everglades' } 
     ]
-
+*/
+console.log(getParkInEachState())
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -54,10 +77,21 @@ Annotation:
 
 /*
 Level 3
-
 Code: 
   Write a function called "getParkActivities" that returns an array of all the activities I can do in a National Park. Make sure to exclude duplicates. 
-
+*/
+function getParkActivities() {
+  parkActivities = nationalParks.reduce((acc, park) => {
+    park.activities.forEach((activity) => {
+      if (!acc.includes(activity)) {
+        acc.push(activity)
+      }
+    })
+    return acc;
+  }, []);
+  return parkActivities;
+};
+/*
 Invoke: 
   To print the value your function returns and confirm it is correct, invoke your function within a console.log().
 e.g.
@@ -77,7 +111,9 @@ e.g.
       'backpacking',
       'rock climbing' 
     ]
-
+*/
+console.log(getParkActivities())
+/*
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
@@ -100,8 +136,8 @@ Annotation:
 
 
 
-// module.exports = {
-//   getParkVisitList,
-//   getParkInEachState,
-//   getParkActivities
-// };
+module.exports = {
+  getParkVisitList,
+  getParkInEachState,
+  getParkActivities
+};
